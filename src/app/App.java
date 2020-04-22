@@ -22,11 +22,18 @@ public class App {
         System.out.println("------WELCOME TO CSV_TRAVERSER------");
         System.out.println("------------------------------------");
 
-        // REPORTING ON: DEATHS
+        // ---------
+        // USING UNStats COVID-19 response: https://covid-19-data.unstatshub.org/datasets/1cb306b5331945548745a5ccd290188e_0
+        // ---------
+        // first we build string arrays of the converted data
         ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
+        // then we convert each String[] into a data object, starting with a container for them all
         DeathData[] deathData = new DeathData[fatalities.size()];
+        // loop through all our string[] and instantiate a data object for each
         for (int i = 1; i < fatalities.size(); i++){
+            // pass the String[] to the DeathData constructor
             deathData[i] = new DeathData(fatalities.get(i));
+            // access and print the deaths property from each object so we see it working
             System.out.println(deathData[i].deaths());
         }
     }
