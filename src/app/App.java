@@ -28,14 +28,31 @@ public class App {
         // first we build string arrays of the converted data
         ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
-        DeathData[] deathData = new DeathData[fatalities.size()];
+        DeathData[] deathData = new DeathData[fatalities.size()-1]; 
         // loop through all our string[] and instantiate a data object for each
         for (int i = 1; i < fatalities.size(); i++){
             // pass the String[] to the DeathData constructor
-            deathData[i] = new DeathData(fatalities.get(i));
+            deathData[i-1] = new DeathData(fatalities.get(i));
             // access and print the deaths property from each object so we see it working
-            System.out.println(deathData[i].deaths());
+            //System.out.println(deathData[i].deaths());
         }
+        DeathData.sortByConfirmed(deathData, true);
+     
+        for(DeathData dd : deathData){
+            System.out.println(dd.country() + " " + dd.state() + " - " + dd.confirmed());
+        }
+        //print most & least cases + recovery percent (confirmed/recovery)
+        DeathData most = deathData[deathData.length - 1];
+        DeathData least = deathData[0];
+        System.out.println("Most: " + most.country() + " " + most.state() + " - " + most.confirmed());
+        System.out.println("Least: " + least.country() + " " + least.state() + " - " + least.confirmed());
+
+        DeathData.sortByRecovered(deathData, false);
+        DeathData recovered_most = deathData[0];
+        DeathData recovered_least = deathData[deathData.length - 1];
+        System.out.println("Most Recovered: " + recovered_most.country() + " " + recovered_most.state() + " - " + recovered_most.recoveryRate() + " %");
+        System.out.println("Least Recovered: " + recovered_least.country() + " " + recovered_least.state() + " - " + recovered_least.recoveryRate() + " %");
+
     }
 
 
