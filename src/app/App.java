@@ -28,14 +28,29 @@ public class App {
         // first we build string arrays of the converted data
         ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
-        DeathData[] deathData = new DeathData[fatalities.size()];
+        DeathData[] deathData = new DeathData[fatalities.size()-1]; 
         // loop through all our string[] and instantiate a data object for each
         for (int i = 1; i < fatalities.size(); i++){
             // pass the String[] to the DeathData constructor
-            deathData[i] = new DeathData(fatalities.get(i));
+            deathData[i-1] = new DeathData(fatalities.get(i));
             // access and print the deaths property from each object so we see it working
-            System.out.println(deathData[i].deaths());
+            //System.out.println(deathData[i].deaths());
         }
+
+        // confirmed
+        DeathData.sortByConfirmed(deathData, true);
+        System.out.println(" Most Confirmed " + deathData[deathData.length - 1].country() + " " + deathData[deathData.length - 1].state() + " " + deathData[deathData.length - 1].confirmed());
+        System.out.println(" Least Confirmed " + deathData[0].country() + " " + deathData[0].state() + " " + deathData[0].confirmed());
+
+        // recovered
+        DeathData.sortByRecovered(deathData, true);
+        System.out.println(" Most Recovered " + deathData[deathData.length - 1].country() + " " + deathData[deathData.length - 1].state() + " " + deathData[deathData.length - 1].recovered());
+        System.out.println(" Least Recovered " + deathData[0].country() + " " + deathData[0].state() + " " + deathData[0].recovered());
+
+        // death rate
+        DeathData.sortByDeaths(deathData, true);
+        System.out.println(" Most Deaths " + deathData[deathData.length - 1].country() + " " + deathData[deathData.length - 1].state() + " " + deathData[deathData.length - 1].deaths());
+        System.out.println(" Least Deaths " + deathData[0].country() + " " + deathData[0].state() + " " + deathData[0].deaths());
     }
 
 
