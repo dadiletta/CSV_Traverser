@@ -1,0 +1,80 @@
+package app.RowObjects;
+
+public class CountyData {
+    
+    String state;
+    String county;
+ 
+    int fips;
+    int cases;
+    int deaths;
+
+    public CountyData(String[] data){
+        
+        state = data[2];
+        county = data[1];
+        cases = Double.parseDouble(data[4]);
+        deaths = Double.parseDouble(data[5]);
+    }
+
+
+    public static CountyData[] sortByDeathChance(CountyData[] countyData, boolean lowToHigh) {
+    
+           
+            if(lowToHigh){
+            for ( int i = 0; i < countryData.length - 1; i++ ){
+                    //initialize the smallest_index    
+                    int smallest_index = i;		
+                    //inner loop locate smallest 
+                    for(int j = i + 1; j < countyData.length; j++) {
+                            if( (countyData[ j ].deaths() / countyData[j].cases() )< (countyData[ smallest_index ].deaths() / countyData[smallest_index].cases() ))
+                                    smallest_index = j;
+                    }	
+                    // 3 part swap between loops   
+                    CountyData temp = countyData[ smallest_index ];
+                    countyData[ smallest_index ] = countyData[ i ];		
+                    countyData[ i ] = temp;
+            }
+        }
+        else{
+            for ( int i = 0; i < countryData.length - 1; i++ ){
+                //initialize the smallest_index    
+                int smallest_index = i;		
+                //inner loop locate smallest 
+                for(int j = i + 1; j < countyData.length; j++) {
+                        if( (countyData[ j ].deaths() / countyData[j].cases() )> (countyData[ smallest_index ].deaths() / countyData[smallest_index].cases() ))
+                                smallest_index = j;
+                }	
+                // 3 part swap between loops   
+                CountyData temp = countyData[ smallest_index ];
+                countyData[ smallest_index ] = countyData[ i ];		
+                countyData[ i ] = temp;
+        }
+        }
+    
+        return countyData;
+    }
+
+    
+
+
+    
+
+    public int deaths(){
+        return deaths;
+    }
+
+    public String state(){
+        return state;
+    }
+
+
+    public int cases(){
+        return cases;
+    }
+    public String county(){
+        return county;
+    }
+
+
+}

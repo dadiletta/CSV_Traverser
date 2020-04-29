@@ -29,7 +29,23 @@ public class App {
         ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
 
-        
+
+
+        //build array from us counties csv
+        ArrayList<String[]> percentByState = buildListfromCSV("us-states.csv");
+        StateData[] stateData = new StateData[percentByState.size() - 1];
+        for(int i = 1; i < percentByState.size();i++){
+            stateData[i-1] = new StateData(percentByState.get(i));
+        }
+        StateData.sortByDeathChance(stateData, true);
+        System.out.println("ASSIGNMENT 2:");
+        System.out.println("The following contains the lowest, median, and highest percent chance of death from Covid-19 by state: ");
+       /* for(int i = 0; i < stateData.length; i++){
+            System.out.println(stateData[i].cases() / stateData[i].deaths());
+        }*/
+        System.out.println("The state " + stateData[0].state() + " has the lowest death rate at " + ((stateData[ 0 ].deaths() / stateData[0].cases()) * 100 ) + " percent chance.");
+        System.out.println("The state " + stateData[stateData.length/2].state() + " has the median death rate at " + ((stateData[ stateData.length/2 ].deaths() / stateData[stateData.length/2].cases()) * 100 ) + " percent chance.");
+        System.out.println("The state " + stateData[stateData.length-1].state() + " has the highest death rate at " + ((stateData[ stateData.length -1  ].deaths() / stateData[stateData.length -1].cases()) * 100 ) + " percent chance.");
 
         DeathData[] deathData = new DeathData[fatalities.size()-1]; 
         // loop through all our string[] and instantiate a data object for each
@@ -40,6 +56,9 @@ public class App {
             //System.out.println(deathData[i].deaths());
         }
         //print least and most confirmed
+        System.out.println("");
+        System.out.println("");
+        System.out.println("ASSIGNMENT 1:");
         DeathData.sortByConfirmed(deathData, true);
         System.out.println("Least Confirmed: " + deathData[0].country() + " - " + deathData[0].state() + " - " + deathData[0].confirmed());
         System.out.println("Most Confirmed: " + deathData[deathData.length-1].country() + " - " + deathData[deathData.length-1].state() + " - " + deathData[deathData.length-1].confirmed());
