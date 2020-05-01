@@ -28,14 +28,32 @@ public class App {
         // first we build string arrays of the converted data
         ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
-        DeathData[] deathData = new DeathData[fatalities.size()];
+        DeathData[] deathData = new DeathData[fatalities.size()-1]; 
         // loop through all our string[] and instantiate a data object for each
         for (int i = 1; i < fatalities.size(); i++){
             // pass the String[] to the DeathData constructor
-            deathData[i] = new DeathData(fatalities.get(i));
+            deathData[i-1] = new DeathData(fatalities.get(i));
             // access and print the deaths property from each object so we see it working
-            System.out.println(deathData[i].deaths());
+            //System.out.println(deathData[i].deaths());
         }
+        DeathData.sortByConfirmed(deathData, true);
+        for(DeathData dd : deathData){
+            System.out.println(dd.state() + " - " + dd.country() + " - " + dd.confirmed());
+        }
+        DeathData highConfirm = deathData[0];
+        DeathData lowConfirm = deathData[0];
+        DeathData highRecover = deathData[0];
+        DeathData lowRecover = deathData[0];
+        for(DeathData dd : deathData){
+            if(highConfirm.confirmed() < dd.confirmed()) highConfirm = dd;
+            if(lowConfirm.confirmed() > dd.confirmed()) lowConfirm = dd;
+            if(highRecover.recovered() < dd.recovered()) highRecover = dd;
+            if(lowRecover.recovered() > dd.recovered()) lowRecover = dd;
+        }
+        System.out.println("The area with the most cases is " + highConfirm.state() + " - " + highConfirm.country());
+        System.out.println("The area with the least cases is " + lowConfirm.state() + " - " + lowConfirm.country());
+        System.out.println("The area with the most recoveries is " + highRecover.state() + " - " + highRecover.country());
+        System.out.println("The area with the least recoveries is " + lowRecover.state() + " - " + lowRecover.country());
     }
 
 
