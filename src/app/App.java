@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import app.RowObjects.DeathData;
+import app.RowObjects.UNStatsDeathData;
 
 public class App {
 
@@ -28,21 +28,21 @@ public class App {
         // first we build string arrays of the converted data
         ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
-        DeathData[] deathData = new DeathData[fatalities.size() - 1];
+        UNStatsDeathData[] dd = new UNStatsDeathData[fatalities.size() - 1];
         // loop through all our string[] and instantiate a data object for each
         for (int i = 1; i < fatalities.size(); i++){
-            // pass the String[] to the DeathData constructor
-            deathData[i - 1] = new DeathData(fatalities.get(i));
+            // pass the String[] to the UNStatsDeathData constructor
+            dd[i - 1] = new UNStatsDeathData(fatalities.get(i));
             // access and print the deaths property from each object so we see it working
-            //System.out.println(deathData[i].deaths());
+            //System.out.println(UNStatsDeathData[i].deaths());
         }
-        DeathData.sortByConfirmed(deathData, true);
-        System.out.println("Least reported cases: " + deathData[0].country() + " " + deathData[0].state() + " - " + deathData[0].confirmed());
-        System.out.println("Most reported cases: " + deathData[deathData.length  - 1].country() + " " + deathData[deathData.length - 1].state() + " - " + deathData[deathData.length - 1].confirmed());
+        UNStatsDeathData.sortByConfirmed(dd, true);
+        System.out.println("Least reported cases: " + dd[0].country() + " " + dd[0].state() + " - " + dd[0].confirmed());
+        System.out.println("Most reported cases: " + dd[dd.length  - 1].country() + " " + dd[dd.length - 1].state() + " - " + dd[dd.length - 1].confirmed());
 
-        DeathData.sortByRecovered(deathData, true);
-        System.out.println("Least recovered cases: " + deathData[0].country() + " " + deathData[0].state() + " - " + deathData[0].recovered());
-        System.out.println("Most recovered cases: " + deathData[deathData.length  - 1].country() + " " + deathData[deathData.length - 1].state() + " - " + deathData[deathData.length - 1].recovered());
+        UNStatsDeathData.sortByRecovered(dd, true);
+        System.out.println("Least recovered cases: " + dd[0].country() + " " + dd[0].state() + " - " + dd[0].recovered());
+        System.out.println("Most recovered cases: " + dd[dd.length  - 1].country() + " " + dd[dd.length - 1].state() + " - " + dd[dd.length - 1].recovered());
         }
 
 
