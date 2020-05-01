@@ -46,7 +46,16 @@ public class App {
         System.out.println("The state " + stateData[0].state() + " has the lowest death rate at " + ((stateData[ 0 ].deaths() / stateData[0].cases()) * 100 ) + " percent chance.");
         System.out.println("The state " + stateData[stateData.length/2].state() + " has the median death rate at " + ((stateData[ stateData.length/2 ].deaths() / stateData[stateData.length/2].cases()) * 100 ) + " percent chance.");
         System.out.println("The state " + stateData[stateData.length-1].state() + " has the highest death rate at " + ((stateData[ stateData.length -1  ].deaths() / stateData[stateData.length -1].cases()) * 100 ) + " percent chance.");
+        double caseTotal = 0.0;
+        double deathTotal = 0.0;
+        for(int i = 0; i < stateData.length; i++){
+            caseTotal += stateData[i].cases();
+            deathTotal += stateData[i].deaths();
+            
 
+        }
+        double avg = (deathTotal / caseTotal) * 100;
+        System.out.println("The average death rate for Covid-19 in the US is "+ avg + " percent.");
         DeathData[] deathData = new DeathData[fatalities.size()-1]; 
         // loop through all our string[] and instantiate a data object for each
         for (int i = 1; i < fatalities.size(); i++){
