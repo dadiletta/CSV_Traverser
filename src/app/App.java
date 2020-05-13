@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;                
 import java.util.ArrayList;
 
-import app.RowObjects.DeathData;
+import app.RowObjects.*;
 
 public class App {
 
@@ -26,32 +26,19 @@ public class App {
         // USING UNStats COVID-19 response: https://covid-19-data.unstatshub.org/datasets/1cb306b5331945548745a5ccd290188e_0
         // ---------
         // first we build string arrays of the converted data
-        ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
+        ArrayList<String[]> fatalities = buildListfromCSV("total_deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
-        DeathData[] deathData = new DeathData[fatalities.size()-1];
+        OxfordData[] oxfordData = new OxfordData[fatalities.size()-1];
         // loop through all our string[] and instantiate a data object for each
         for (int i = 1; i < fatalities.size(); i++){
             // pass the String[] to the DeathData constructor
-            deathData[i-1] = new DeathData(fatalities.get(i));
+            oxfordData[i-1] = new OxfordData(fatalities.get(i));
             // access and print the deaths property from each object so we see it working
             //System.out.println(deathData[i].deaths());
         }
-        DeathData.sortByConfirmed(deathData, true);
-        System.out.println("-----------------------------CONFIRMED NUMBERS FROM LOW TO HIGH-----------------------------");
-        //for(DeathData dd : deathData){
-            //System.out.println(dd.country() + " " + dd.state() + " - " + dd.confirmed());
-        //}
-        System.out.println("fewest cases confirmed:" + " " + deathData[0].country() + " " + deathData[0].state() + " - " + deathData[0].confirmed());
-        System.out.println("most cases confirmed:" + " " + deathData[deathData.length - 1].country() + " " + deathData[deathData.length - 1].state() + " - " + deathData[deathData.length - 1].confirmed());
 
+        OxfordData.populateNewDeathData(oxfordData);
 
-        DeathData.sortByRecovered(deathData, true);
-        System.out.println("-----------------------------RECOVERED NUMBERS FROM LOW TO HIGH-----------------------------");
-        //for(DeathData dd : deathData){
-            //System.out.println(dd.country() + " " + dd.state() + " - " + dd.recovered());
-        //}
-        System.out.println("fewest cases recovered:" + " " + deathData[0].country() + " " + deathData[0].state() + " - " + deathData[0].recovered());
-        System.out.println("most cases recovered:" + " " + deathData[deathData.length - 1].country() + " " + deathData[deathData.length - 1].state() + " - " + deathData[deathData.length - 1].recovered());
     }
 
 
