@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import app.RowObjects.DeathData;
+import app.RowObjects.OWIDData;
 
 public class App {
 
@@ -21,35 +22,22 @@ public class App {
         System.out.println("------------------------------------");
         System.out.println("------WELCOME TO CSV_TRAVERSER------");
         System.out.println("------------------------------------");
-
-        // ---------
-        // USING UNStats COVID-19 response: https://covid-19-data.unstatshub.org/datasets/1cb306b5331945548745a5ccd290188e_0
-        // ---------
-        // first we build string arrays of the converted data
-        ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
-        // then we convert each String[] into a data object, starting with a container for them all
-        DeathData[] deathData = new DeathData[fatalities.size()-1]; 
+        // creates data in array for OWIDData
+        ArrayList<String[]> data = buildListfromCSV("owid-covid-data.csv");
+        //for(String[] s: data) System.out.println(s[0]);
+        // then we convert each String into a data object, starting with a container for them all
+        OWIDData[] owidData = new OWIDData[data.size()-1]; 
         // loop through all our string[] and instantiate a data object for each
-        for (int i = 1; i < fatalities.size(); i++){
+        for (int i = 1; i < data.size(); i++){
             // pass the String[] to the DeathData constructor
-            deathData[i-1] = new DeathData(fatalities.get(i));
-            // access and print the deaths property from each object so we see it working
-            //System.out.println(deathData[i].deaths());
+            owidData[i-1] = new OWIDData(data.get(i));
+            System.out.println(owidData[i-1].tests() + " " + i);
         }
-        // sorts and prints out by confirmed
-        DeathData.sortByConfirmed(deathData, true);
-        System.out.println("fewest confirmed cases " + deathData[0].country() + " " + deathData[0].state()+ " - " + deathData[0].confirmed());
-        System.out.println("Most confirmed cases " + deathData[deathData.length-1].country() + " " + deathData[deathData.length-1].state()+ " - " + deathData[deathData.length-1].confirmed());
 
-        // sorts and prints out by recovered
-        DeathData.sortByRecovered(deathData, true);
-        System.out.println("fewest recovered " + deathData[0].country() + " " + deathData[0].state()+ " - " + deathData[0].recovered());
-        System.out.println("Most recovered " + deathData[deathData.length-1].country() + " " + deathData[deathData.length-1].state()+ " - " + deathData[deathData.length-1].recovered());
-
-        // sorts by percentage recovered
-        DeathData.sortByPercentageRecovered(deathData, true);
-        System.out.println("Smallest percentage recovered " + deathData[0].country() + " " + deathData[0].state()+ " - " + (deathData[0].recoveryRate())+ "%");
-        System.out.println("Largest percentage recovered " + deathData[deathData.length-1].country() + " " + deathData[deathData.length-1].state()+ " - " + (deathData[deathData.length-1].recoveryRate())+ "%");
+        ArrayList<OWIDData> oData = OWIDData.sortByNegResults(owidData, true);
+        for(OWIDData d: oData){
+            System.out.println(d.country() + " negative test results is: " + d.negativeTestResults());
+        }
 
     }
 
