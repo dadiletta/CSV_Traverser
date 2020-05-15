@@ -8,7 +8,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+<<<<<<< Updated upstream
 import app.RowObjects.UNStatsDeathData;
+=======
+import app.RowObjects.DeathData;
+import app.RowObjects.OWIDData;
+>>>>>>> Stashed changes
 
 public class App {
 
@@ -26,6 +31,7 @@ public class App {
         // USING UNStats COVID-19 response: https://covid-19-data.unstatshub.org/datasets/1cb306b5331945548745a5ccd290188e_0
         // ---------
         // first we build string arrays of the converted data
+<<<<<<< Updated upstream
         ArrayList<String[]> fatalities = buildListfromCSV("COVID_stats_Deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
         UNStatsDeathData[] dd = new UNStatsDeathData[fatalities.size() - 1];
@@ -44,6 +50,46 @@ public class App {
         System.out.println("Least recovered cases: " + dd[0].country() + " " + dd[0].state() + " - " + dd[0].recovered());
         System.out.println("Most recovered cases: " + dd[dd.length  - 1].country() + " " + dd[dd.length - 1].state() + " - " + dd[dd.length - 1].recovered());
         }
+=======
+        String date = "2020-05-06";
+        ArrayList<String[]> owid = buildListfromCSV("owid-covid-data.csv");
+        ArrayList<OWIDData> complete = new ArrayList<OWIDData>();
+        for(int i = 1; i < owid.size(); i++){
+            complete.add(new OWIDData(owid.get(i)));
+        }
+        OWIDData.filterDate(date, complete);
+        OWIDData.sortByDeaths(complete);
+        
+        //TODO: RESULTS
+        System.out.println("The country with the highest fatality rate per infected as of May 6th, 2020 is " + complete.get(complete.size()-1).location() + " with a rate of " + complete.get(complete.size()-1).percentDeaths() + "%.");
+        System.out.println("The country with the second highest fatality rate per infected as of May 6th, 2020 is " + complete.get(complete.size()-2).location() + " with a rate of " + complete.get(complete.size()-2).percentDeaths() + "%.");
+        System.out.println("The country with the third highest fatality rate per infected as of May 6th, 2020 is " + complete.get(complete.size()-3).location() + " with a rate of " + complete.get(complete.size()-3).percentDeaths() + "%.");
+        System.out.println("The country with the lowest fatality rate per infected as of May 6th, 2020 is " + complete.get(0).location() + " with a rate of " + complete.get(0).percentDeaths() + "%.");
+        System.out.println("The country with the second lowest fatality rate per infected as of May 6th, 2020 is " + complete.get(1).location() + " with a rate of " + complete.get(1).percentDeaths() + "%.");
+        System.out.println("The country with the third lowest fatality rate per infected as of May 6th, 2020 is " + complete.get(2).location() + " with a rate of " + complete.get(2).percentDeaths() + "%.");
+        
+
+
+        // DeathData.sortByConfirmed(deathData, true);
+        // for(DeathData dd : deathData){
+        //     System.out.println(dd.state() + " - " + dd.country() + " - " + dd.confirmed());
+        // }
+        // DeathData highConfirm = deathData[0];
+        // DeathData lowConfirm = deathData[0];
+        // DeathData highRecover = deathData[0];
+        // DeathData lowRecover = deathData[0];
+        // for(DeathData dd : deathData){
+        //     if(highConfirm.confirmed() < dd.confirmed()) highConfirm = dd;
+        //     if(lowConfirm.confirmed() > dd.confirmed()) lowConfirm = dd;
+        //     if(highRecover.recovered() < dd.recovered()) highRecover = dd;
+        //     if(lowRecover.recovered() > dd.recovered()) lowRecover = dd;
+        // }
+        // System.out.println("The area with the most cases is " + highConfirm.state() + " - " + highConfirm.country());
+        // System.out.println("The area with the least cases is " + lowConfirm.state() + " - " + lowConfirm.country());
+        // System.out.println("The area with the most recoveries is " + highRecover.state() + " - " + highRecover.country());
+        // System.out.println("The area with the least recoveries is " + lowRecover.state() + " - " + lowRecover.country());
+    }
+>>>>>>> Stashed changes
 
 
     /**
