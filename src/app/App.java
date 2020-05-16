@@ -40,7 +40,7 @@ public class App {
         OxfordData.populateNewDeathData(oxfordData);
 
         // ---------
-        // Oxford Data
+        // Oxford Data-jedimaster - OxfordData.java
         // ---------
         // first we build string arrays of the converted data
         ArrayList<String[]> fatalities = buildListfromCSV("total_deaths.csv");
@@ -53,8 +53,11 @@ public class App {
             // access and print the deaths property from each object so we see it working
             //System.out.println(deathData[i].deaths());
         }
-
         OxfordData.populateNewDeathData(oxfordData);
+
+        // ---------
+        // OWID-covid-toastercrusade - NewDeathData.java
+        // ---------
 
     }
 
