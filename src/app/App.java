@@ -5,11 +5,10 @@ package app;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
+import java.io.IOException;                
 import java.util.ArrayList;
 
-import app.RowObjects.DeathData;
-import app.RowObjects.OWIDData;
+import app.RowObjects.*;
 
 public class App {
 
@@ -22,22 +21,43 @@ public class App {
         System.out.println("------------------------------------");
         System.out.println("------WELCOME TO CSV_TRAVERSER------");
         System.out.println("------------------------------------");
-        // creates data in array for OWIDData
-        ArrayList<String[]> data = buildListfromCSV("owid-covid-data.csv");
-        //for(String[] s: data) System.out.println(s[0]);
-        // then we convert each String into a data object, starting with a container for them all
-        OWIDData[] owidData = new OWIDData[data.size()-1]; 
+
+        // ---------
+        // USING UNStats COVID-19 response: https://covid-19-data.unstatshub.org/datasets/1cb306b5331945548745a5ccd290188e_0
+        // ---------
+        // first we build string arrays of the converted data
+        ArrayList<String[]> deaths  = buildListfromCSV("COVID_stats_Deaths.csv");
+        // then we convert each String[] into a data object, starting with a container for them all
+        UNStatsDeathData[] deathData = new UNStatsDeathData[deaths.size()-1];
         // loop through all our string[] and instantiate a data object for each
-        for (int i = 1; i < data.size(); i++){
+        for (int i = 1; i < deaths.size(); i++){
             // pass the String[] to the DeathData constructor
-            owidData[i-1] = new OWIDData(data.get(i));
-            System.out.println(owidData[i-1].tests() + " " + i);
+            deathData[i-1] = new UNStatsDeathData(deaths.get(i));
+            // access and print the deaths property from each object so we see it working
+            //System.out.println(deathData[i].deaths());
         }
 
-        ArrayList<OWIDData> oData = OWIDData.sortByNegResults(owidData, true);
-        for(OWIDData d: oData){
-            System.out.println(d.country() + " negative test results is: " + d.negativeTestResults());
+        OxfordData.populateNewDeathData(oxfordData);
+
+        // ---------
+        // Oxford Data-jedimaster - OxfordData.java
+        // ---------
+        // first we build string arrays of the converted data
+        ArrayList<String[]> fatalities = buildListfromCSV("total_deaths.csv");
+        // then we convert each String[] into a data object, starting with a container for them all
+        OxfordData[] oxfordData = new OxfordData[fatalities.size()-1];
+        // loop through all our string[] and instantiate a data object for each
+        for (int i = 1; i < fatalities.size(); i++){
+            // pass the String[] to the DeathData constructor
+            oxfordData[i-1] = new OxfordData(fatalities.get(i));
+            // access and print the deaths property from each object so we see it working
+            //System.out.println(deathData[i].deaths());
         }
+        OxfordData.populateNewDeathData(oxfordData);
+
+        // ---------
+        // OWID-covid-toastercrusade - NewDeathData.java
+        // ---------
 
     }
 
