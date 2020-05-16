@@ -26,6 +26,23 @@ public class App {
         // USING UNStats COVID-19 response: https://covid-19-data.unstatshub.org/datasets/1cb306b5331945548745a5ccd290188e_0
         // ---------
         // first we build string arrays of the converted data
+        ArrayList<String[]> deaths  = buildListfromCSV("COVID_stats_Deaths.csv");
+        // then we convert each String[] into a data object, starting with a container for them all
+        UNStatsDeathData[] deathData = new UNStatsDeathData[deaths.size()-1];
+        // loop through all our string[] and instantiate a data object for each
+        for (int i = 1; i < deaths.size(); i++){
+            // pass the String[] to the DeathData constructor
+            deathData[i-1] = new UNStatsDeathData(deaths.get(i));
+            // access and print the deaths property from each object so we see it working
+            //System.out.println(deathData[i].deaths());
+        }
+
+        OxfordData.populateNewDeathData(oxfordData);
+
+        // ---------
+        // Oxford Data
+        // ---------
+        // first we build string arrays of the converted data
         ArrayList<String[]> fatalities = buildListfromCSV("total_deaths.csv");
         // then we convert each String[] into a data object, starting with a container for them all
         OxfordData[] oxfordData = new OxfordData[fatalities.size()-1];
