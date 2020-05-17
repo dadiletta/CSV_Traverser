@@ -2,6 +2,10 @@ package app.RowObjects;
 
 import java.util.ArrayList;
 
+/**
+ * @author Brian and Cole - 2020
+ * owid-covid-data.csv
+ */
 public class OWIDData{
     String location;
     double newTests;
