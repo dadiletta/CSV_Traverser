@@ -1,5 +1,9 @@
 package app.RowObjects;
 
+/**
+ * @author Dom S. - 2020
+ * owid-covid-data.csv
+ */
 public class NewDeathData {
     String isoCode;
     String location;

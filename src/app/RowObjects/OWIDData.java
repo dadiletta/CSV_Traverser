@@ -3,12 +3,8 @@ package app.RowObjects;
 import java.util.ArrayList;
 
 /**
- * UNStats COVID-19 response
- * https://covid-19-data.unstatshub.org/datasets/bbb2e4f589ba40d692fab712ae37b9ac_0?geometry=64.592%2C-38.069%2C-47.205%2C63.033
- * COVID_stats_Deaths.csv
- * 
- * Want to know the difference between static and non-static?
- * https://www.youtube.com/watch?v=WhDd9JQ7UtI&feature=youtu.be&hd=1
+ * @author Joe P. - 2020
+ * owid-covid-data.csv
  */
 public class OWIDData {
     String isoCode;

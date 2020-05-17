@@ -3,6 +3,7 @@ package app.RowObjects;
 /**
  * https://ourworldindata.org/coronavirus-source-data
  * total_deaths.csv
+ * @author Charlie M. - 2020
  */
 public class OxfordData {
 

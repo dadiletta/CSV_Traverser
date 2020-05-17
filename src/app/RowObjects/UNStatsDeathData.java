@@ -7,6 +7,7 @@ package app.RowObjects;
  * 
  * Want to know the difference between static and non-static?
  * https://www.youtube.com/watch?v=WhDd9JQ7UtI&feature=youtu.be&hd=1
+ * @author Mr. Adiletta
  */
 public class UNStatsDeathData {
     int id;
