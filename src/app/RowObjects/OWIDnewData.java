@@ -4,11 +4,7 @@ package app.RowObjects;
  * @author Dom S. - 2020
  * owid-covid-data.csv
  */
-<<<<<<< HEAD
 public class OWIDnewData {
-=======
-public class NewDeathData {
->>>>>>> master
     String isoCode;
     String location;
     String date;
@@ -16,11 +12,7 @@ public class NewDeathData {
     int newDeaths;
     int deaths;
 
-<<<<<<< HEAD
     public OWIDnewData(String[] data){
-=======
-    public NewDeathData(String[] data){
->>>>>>> master
         isoCode = data[0];
         location = data[1];
         date = data[2];
@@ -29,13 +21,8 @@ public class NewDeathData {
         deaths = Integer.parseInt(data[5]);
     }
 
-<<<<<<< HEAD
     public static OWIDnewData[] sortByConfirmed(OWIDnewData[] deathData, boolean lowToHigh) {
         OWIDnewData temp;
-=======
-    public static NewDeathData[] sortByConfirmed(NewDeathData[] deathData, boolean lowToHigh) {
-        NewDeathData temp;
->>>>>>> master
         if (lowToHigh) {
             // INNEFICIENt SELECTION SORT ALG
             for (int i = 0; i < deathData.length - 1; i++) {	
@@ -69,13 +56,8 @@ public class NewDeathData {
         return deathData;
     }
 
-<<<<<<< HEAD
     public static OWIDnewData[] sortByDeaths(OWIDnewData[] deathData, boolean lowToHigh) {
         OWIDnewData temp;
-=======
-    public static NewDeathData[] sortByDeaths(NewDeathData[] deathData, boolean lowToHigh) {
-        NewDeathData temp;
->>>>>>> master
         if (lowToHigh) {
             // INNEFICIENt SELECTION SORT ALG
             for (int i = 0; i < deathData.length - 1; i++) {	
