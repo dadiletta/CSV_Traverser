@@ -56,3 +56,4 @@ dist
 .vs-code/
 .vscode
 .vscode/
+bin/app/App.class
