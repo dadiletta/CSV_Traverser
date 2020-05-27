@@ -6,7 +6,11 @@ import java.util.ArrayList;
  * @author Brian and Cole - 2020
  * owid-covid-data.csv
  */
+<<<<<<< HEAD
 public class OWIDperData{
+=======
+public class OWIDData{
+>>>>>>> master
     String location;
     double newTests;
     int newCases;
@@ -15,7 +19,11 @@ public class OWIDperData{
     int totalCases;
 
 
+<<<<<<< HEAD
     public OWIDperData(String[] data){
+=======
+    public OWIDData(String[] data){
+>>>>>>> master
         location = data[1];
         try{
             newCases = Integer.parseInt(data[4]);
@@ -58,8 +66,13 @@ public class OWIDperData{
         return -1;
     }
 
+<<<<<<< HEAD
     public static OWIDperData[] sortByNewTests(OWIDperData[] owidData, boolean lowToHigh){
         OWIDperData temp;
+=======
+    public static OWIDData[] sortByNewTests(OWIDData[] owidData, boolean lowToHigh){
+        OWIDData temp;
+>>>>>>> master
         if(lowToHigh){
             for (int i = 0; i < owidData.length - 1; i++ ){
                 //initialize the smallest_index    
@@ -78,8 +91,13 @@ public class OWIDperData{
         return owidData;
     }
 
+<<<<<<< HEAD
     public static OWIDperData[] sortByNewCases(OWIDperData[] owidData, boolean lowToHigh){
         OWIDperData temp;
+=======
+    public static OWIDData[] sortByNewCases(OWIDData[] owidData, boolean lowToHigh){
+        OWIDData temp;
+>>>>>>> master
         if(lowToHigh){
             for (int i = 0; i < owidData.length - 1; i++ ){
                 //initialize the smallest_index    
@@ -98,11 +116,19 @@ public class OWIDperData{
         return owidData;
     }
 
+<<<<<<< HEAD
     // public static OWIDperData[] sortByDeaths(ArrayList<OWIDperData> owidDatas, boolean lowToHigh){
     //     OWIDperData temp;
     //     if(lowToHigh){
     //         for (int j = 1; j < owidDatas.size(); j++) {
     //             OWIDperData current = owidDatas.get(j);
+=======
+    // public static OWIDData[] sortByDeaths(ArrayList<OWIDData> owidDatas, boolean lowToHigh){
+    //     OWIDData temp;
+    //     if(lowToHigh){
+    //         for (int j = 1; j < owidDatas.size(); j++) {
+    //             OWIDData current = owidDatas.get(j);
+>>>>>>> master
     //             int i = j-1;
     //             while ((i > -1) && ((owidDatas.get(i).compareTo(current)) == 1)) {
     //                 list.set(i+1, list.get(i));
@@ -131,8 +157,13 @@ public class OWIDperData{
     //     return owidDatas;
     // }
 
+<<<<<<< HEAD
     public static void sortByDeaths(ArrayList<OWIDperData> sort){
         OWIDperData temp;
+=======
+    public static void sortByDeaths(ArrayList<OWIDData> sort){
+        OWIDData temp;
+>>>>>>> master
         for(int j = 1; j < sort.size(); j++){
             for(int i = j-1; i > -1; i--){
                 if(sort.get(i+1).percentDeaths()<sort.get(i).percentDeaths()) sort.add(i+1,sort.remove(i));
@@ -141,7 +172,11 @@ public class OWIDperData{
         }
     }
 
+<<<<<<< HEAD
     public static void filterDate(String date, ArrayList<OWIDperData> sorted){
+=======
+    public static void filterDate(String date, ArrayList<OWIDData> sorted){
+>>>>>>> master
         int i = 0;
         while(i < sorted.size()){
             if(!sorted.get(i).date().equals(date)) sorted.remove(i);
